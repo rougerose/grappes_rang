@@ -1,0 +1,16 @@
+<paquet
+    prefix="grappes_rang"
+    categorie="divers"
+    version="1.0.0"
+    etat="test"
+    compatibilite="[3.0.0;3.0.99]"
+    logo="prive/themes/spip/images/grappe-32.png"
+    documentation=""
+>   
+
+    <nom>Grappes rang</nom>
+    <!-- Ajouter et modifier le rang de chaque objet d'une grappe -->
+
+    <auteur></auteur>
+    <necessite nom="grappes" compatibilite="[1.0.0;[" />
+</paquet>
