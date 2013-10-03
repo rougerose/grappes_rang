@@ -1,0 +1,33 @@
+<div class="formulaire_spip formulaire_#FORM formulaire_#ENV{identifiant}">
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+[(#ENV{editable}|oui)
+<form name="formulaire_#ENV{identifiant}" action="#ENV{action}" method="post"><div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+    #SET{rangs,#ARRAY{1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10}}
+    <ul>
+        #SAISIE*{selection,rang,datas=#GET{rangs}}
+    </ul>
+    <p class='boutons'><span class='image_loading'>&nbsp;</span>
+        <input type='submit' class='submit' value='<:bouton_changer:>' />
+    </p>
+</div></form>
+]
+<script type="text/javascript">
+    function update_select_#ENV{identifiant}(statut_default){
+        var selected = this.options[this.selectedIndex];
+        var boutons = jQuery(this).attr('style',jQuery(selected).attr('style')).closest('form').find('.boutons');
+        if (selected.value!=statut_default)
+            boutons.css('visibility','visible').show('fast');
+        else
+            boutons.css('visibility','hidden')
+    }
+    jQuery(function(){
+        jQuery("[.formulaire_(#ENV{identifiant})] select")
+            .each(function(){update_select_#ENV{identifiant}.apply(this,['#ENV{rang}']);})
+            .bind('change',function(){update_select_#ENV{identifiant}.apply(this,['#ENV{rang}']);})
+            .bind('keyup',function(){update_select_#ENV{identifiant}.apply(this,['#ENV{rang}']);});
+    });
+</script>
+</div>

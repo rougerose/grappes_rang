@@ -9,12 +9,10 @@
 	<BOUCLE_liste(MOTS){id_mot IN #GET{selection}}{pagination 10}{recherche ?}{tout}>
 		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
 			<td class="rang">
-			    [(#EVAL{#COMPTEUR_BOUCLE!=1}|?{" ",""})
-			        [(#BOUTON_ACTION{[(#CHEMIN_IMAGE{fleche-haut.gif}|balise_img{'monter'})],#URL_ACTION_AUTEUR{rang_objets,changer/grappe/#ID_GRAPPE/mot/#ID_MOT/monter,#SELF},ajax})]
-			    ]
-			    [(#EVAL{#COMPTEUR_BOUCLE!=#TOTAL_BOUCLE}|?{" ",""})
-			        [(#BOUTON_ACTION{[(#CHEMIN_IMAGE{fleche-bas.gif}|balise_img{'descendre'})],#URL_ACTION_AUTEUR{rang_objets,changer/grappe/#ID_GRAPPE/mot/#ID_MOT/descendre,#SELF},ajax})]
-			    ]
+			    [(#SET{identifiant,[(#VAL{rang_[(#SOURCE)]_[(#OBJET)]}|uniqid)]})]
+                [<div class="ajax">
+                    (#FORMULAIRE_MODIFIER_RANG{#RANG,#SOURCE,#ID_SOURCE,#OBJET,#ID_OBJET,#GET{identifiant}})
+                </div>]
 			</td>
 			<td class='picto'>[(#VAL|puce_statut{mot,#ID_MOT,#ID_GROUPE})]</td>
 			<td class='titre principale'>[(#LOGO_MOT|image_reduire{20,20})]#TITRE</td>

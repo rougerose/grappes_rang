@@ -8,12 +8,10 @@
 	<BOUCLE_liste(sites spip_grappes_liens){id_grappe=#ID_GRAPPE}{id_syndic IN #GET{selection}}{par rang}{pagination 10}{recherche ?}{tout}>
 		<tr class="tr_liste">
 			<td class="rang">
-			    [(#EVAL{#COMPTEUR_BOUCLE!=1}|?{" ",""})
-			        [(#BOUTON_ACTION{[(#CHEMIN_IMAGE{fleche-haut.gif}|balise_img{'monter'})],#URL_ACTION_AUTEUR{rang_objets,changer/grappe/#ID_GRAPPE/syndic/#ID_SYNDIC/monter,#SELF},ajax})]
-			    ]
-			    [(#EVAL{#COMPTEUR_BOUCLE!=#TOTAL_BOUCLE}|?{" ",""})
-			        [(#BOUTON_ACTION{[(#CHEMIN_IMAGE{fleche-bas.gif}|balise_img{'descendre'})],#URL_ACTION_AUTEUR{rang_objets,changer/grappe/#ID_GRAPPE/syndic/#ID_SYNDIC/descendre,#SELF},ajax})]
-			    ]
+			    [(#SET{identifiant,[(#VAL{rang_[(#SOURCE)]_[(#OBJET)]}|uniqid)]})]
+                [<div class="ajax">
+                    (#FORMULAIRE_MODIFIER_RANG{#RANG,#SOURCE,#ID_SOURCE,#OBJET,#ID_OBJET,#GET{identifiant}})
+                </div>]
 			</td>
 			<td class='statut'>[(#STATUT|puce_statut{site,#ID_SYNDIC,#ID_RUBRIQUE}) ]</td>
 			<td class='nom_site principale'>[(#LOGO_SITE|image_reduire{26,20})]#NOM_SITE</td>

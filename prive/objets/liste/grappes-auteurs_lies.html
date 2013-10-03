@@ -8,12 +8,10 @@
     <BOUCLE_liste(auteurs spip_grappes_liens){id_grappe=#ID_GRAPPE}{id_auteur IN #GET{selection}}{par rang}{pagination 10}{recherche ?}{tout}>
         <tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
             <td class="rang">
-                [(#EVAL{#COMPTEUR_BOUCLE!=1}|?{" ",""})
-                    [(#BOUTON_ACTION{[(#CHEMIN_IMAGE{fleche-haut.gif}|balise_img{'monter'})],#URL_ACTION_AUTEUR{rang_objets,changer/grappe/#ID_GRAPPE/auteur/#ID_AUTEUR/monter,#SELF},ajax})]
-                ]
-                [(#EVAL{#COMPTEUR_BOUCLE!=#TOTAL_BOUCLE}|?{" ",""})
-                    [(#BOUTON_ACTION{[(#CHEMIN_IMAGE{fleche-bas.gif}|balise_img{'descendre'})],#URL_ACTION_AUTEUR{rang_objets,changer/grappe/#ID_GRAPPE/auteur/#ID_AUTEUR/descendre,#SELF},ajax})]
-                ]
+                [(#SET{identifiant,[(#VAL{rang_[(#SOURCE)]_[(#OBJET)]}|uniqid)]})]
+                [<div class="ajax">
+                    (#FORMULAIRE_MODIFIER_RANG{#RANG,#SOURCE,#ID_SOURCE,#OBJET,#ID_OBJET,#GET{identifiant}})
+                </div>]
             </td>
             <td class='statut'>[(#STATUT|puce_statut{auteur})]</td>
             <td class='nom'>#NOM[ <small>((#LOGIN))</small>]</td>
