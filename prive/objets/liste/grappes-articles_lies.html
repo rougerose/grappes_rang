@@ -5,7 +5,7 @@
 <table class='spip liste'>
 	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{info_1_article,info_nb_articles}})</strong></caption>]
 	<tbody>
-	<BOUCLE_liste(articles spip_grappes_liens){id_grappe=#ID_GRAPPE}{id_article IN #GET{selection}}{par rang}{pagination 10}{recherche ?}{tout}{statut IN prop,prepa,publie,refuse,poubelle}>
+	<BOUCLE_liste(articles spip_grappes_liens){id_grappe=#ID_GRAPPE}{id_article IN #GET{selection}}{par rang}{pagination 10}{recherche ?}{tout}{statut ?}>
 		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
 			<td class='rang'>
 				[(#SET{identifiant,[(#VAL{rang_[(#SOURCE)]_[(#OBJET)]}|uniqid)]})]

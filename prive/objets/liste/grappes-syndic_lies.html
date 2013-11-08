@@ -5,7 +5,7 @@
 <table class='spip liste'>
 	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{info_1_site,info_nb_sites}})</strong></caption>]
 	<tbody>
-	<BOUCLE_liste(sites spip_grappes_liens){id_grappe=#ID_GRAPPE}{id_syndic IN #GET{selection}}{par rang}{pagination 10}{recherche ?}{tout}>
+	<BOUCLE_liste(sites spip_grappes_liens){id_grappe=#ID_GRAPPE}{id_syndic IN #GET{selection}}{par rang}{pagination 10}{recherche ?}{statut ?}{tout}>
 		<tr class="tr_liste">
 			<td class="rang">
 			    [(#SET{identifiant,[(#VAL{rang_[(#SOURCE)]_[(#OBJET)]}|uniqid)]})]
